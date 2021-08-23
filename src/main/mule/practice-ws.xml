@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f0a13a1a-ce70-4a01-b7e2-a16f2afc8310" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="practice-wsFlow" doc:id="bbebbbef-80e1-4ac9-92d7-58f267113a2e" >
+		<http:listener doc:name="Listener" doc:id="cfc10d5b-e004-4eba-80a3-6b4768e4d181" config-ref="HTTP_Listener_config" path="/{parmname}" allowedMethods="GET"/>
+		<set-payload value="#[message.inboundProperties.'http.uri.params'.parmname]" doc:name="Set Payload" doc:id="84921547-1cf7-4edd-a140-8067d206b998" />
+	</flow>
+</mule>
